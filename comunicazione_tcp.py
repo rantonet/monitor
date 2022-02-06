@@ -38,24 +38,30 @@ class comunicazione_tcp(oggetto):
             nome,valore = impostazione.split(" ")
             impostazioni.append([nome,valore])
         ################# Fine lettura delle impostazioni ######################
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         for impostazione in impostazioni:
-            if impostazione[0]   == "server":
-                self.server = True
-            elif impostazione[0] == "client":
-                self.server = False
-            elif impostazione[0] == "indirizzo":
-                self.indirizzo_server = impostazione[1]
-            elif impostazione[0] == "porta":
-                self.porta = int(impostazione[1])
+            nome,valore = impostazione
+            if nome == "server":
+                self.server = valore
+                #print(impostazione)
+                print("Server : ",self.server)                
+            elif nome == "indirizzo":
+                self.indirizzo_server = valore
+                #print(impostazione)
+                print("Indirizzo Server: ",self.indirizzo_server)
+            elif nome == "porta":
+                self.porta = int(valore)
+                #print(impostazione)
+                print("Porta : ",self.porta)
+
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         if self.server == True:
-            logging.info(type(self).__name__ + " avvio server TCP")
-            self.socket.bind(('0.0.0.0', self.porta))
+            logging.info(type(self).__name__ + " avvio server TCP" + self.socket.bind(('0.0.0.0', self.porta)))
             self.socket.listen(1)
             logging.info(type(self).__name__ + " server TCP avviato")
         else:
             logging.info(type(self).__name__ + " connettendo a " + str(self.indirizzo_server) + ":" + str(self.porta))
+
             self.socket.connect((self.indirizzo_server,self.porta))
             logging.info(type(self).__name__ + " connesso a " + str(self.indirizzo_server) + ":" + str(self.porta))
         ######################## Fine inizializzazione #########################
@@ -176,17 +182,22 @@ class comunicazione_tcp(oggetto):
                 if dati != "":
                     print(dati)
                     if dati.find("cassa presente") >= 0:
-                        with self.lock_segnali_uscita:
-                            self.coda_segnali_uscita.put_nowait(["avvia acquisizione","acquisizione_filmato"])
+                        try:
+                            self.invia_dati("cassa presente")
+                        except:
+                            pass
                     elif dati.find("rilascia cassa") >= 0:
-                        with self.lock_segnali_uscita:
-                            self.coda_segnali_uscita.put_nowait(["ferma acquisizione","acquisizione_filmato"])
+                        try:
+                            self.invia_dati("rilascia cassa")
+                        except:
+                            pass
                     elif dati.find("stop") >= 0:
                         pass
-                    elif dati.find("CODICE") >= 0:
-                        prefisso,codice = dati.split()
-                        with open("codici_casse","a") as codici:
-                            codici.writelines(codice + '\n')
+                    elif segnale.find("CODICE") >= 0:
+                        try:
+                            self.invia_dati(segnale)
+                        except:
+                            pass
                 sleep(ATTESA_CICLO_PRINCIPALE)
     def aggiornamento(self):
         pass

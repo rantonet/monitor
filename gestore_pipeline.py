@@ -16,11 +16,8 @@ from gestore_segnali import gestore_segnali
 
 # Operazioni
 ## Mettere qui le operazioni della pipeline
-from acquisizione_filmato   import acquisizione_filmato
-from comunicazione_seriale  import comunicazione_seriale
-from invia_foto             import invia_foto
-from stato_shotstation      import stato_shotstation
-from lettore_codice_a_barre import lettore_codice_a_barre
+from monitor                import monitor
+from comunicazione_tcp      import comunicazione_tcp
 
 ATTESA_CICLO_PRINCIPALE = 0.001
 

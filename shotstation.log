@@ -1,0 +1,118 @@
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :8081
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :8081
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :8081
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :8081
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :8081
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :8081
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :8081
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :0
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :0
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :0
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :8081
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a 127.0.0.1:8081
+INFO:root:comunicazione_tcp connesso a 127.0.0.1:8081
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:<comunicazione_tcp name='comunicazione_tcp-4' parent=32908 initial>
+INFO:root:oggetto inizializzazione
+INFO:root:monitor: avviando gestore segnali
+INFO:root:monitor inizializzato
+INFO:root:monitor inizializzazione 17:13:24
+INFO:root:monitor inizializzato 17:13:24
+INFO:root:<monitor name='monitor-7' parent=32908 initial>
+INFO:root:gestore_pipeline sta avviando comunicazione_tcp

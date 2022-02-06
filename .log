@@ -1,0 +1,18 @@
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :8081
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione
+INFO:root:comunicazione_tcp connettendo a :8081
