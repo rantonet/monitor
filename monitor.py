@@ -10,8 +10,6 @@ import logging
 
 from time     import sleep,localtime,strftime
 from oggetto  import oggetto
-from picamera import PiCamera
-from gpiozero import LED,Button
 
 ATTESA_CICLO_PRINCIPALE = 0.01
 
@@ -74,90 +72,6 @@ class acquisizione_filmato(oggetto):
         with self.lock_segnali_uscita:
             if not self.coda_segnali_uscita.full():
                 self.coda_segnali_uscita.put_nowait(["avviato",""])
-
-        ########################## Impostazioni ################################
-        camera                             = PiCamera()
-        risoluzione                        = ""
-        auto_bilanciamento_bianco_guadagno = 0
-        auto_bilanciamento_bianco_modalita = ""
-        luminosita                         = 0
-        contrasto                          = 0
-        compensazione_esposizione          = 0
-        modalita_esposizione               = ""
-        flash                              = ""
-        hflip                              = ""
-        vflip                              = ""
-        effetto_immagine                   = ""
-        iso                                = 0
-        rotazione                          = 0
-        saturazione                        = 0
-        nitidezza                          = 0
-        velocita_otturatore                = 0
-        ########################## Fine impostazioni ###########################
-        ########## Preleva le impostazioni dal file di configuraizone ##########
-        with open(self.file_configurazione) as file_configurazione:
-            for linea in file_configurazione:
-                linea = linea.strip()
-                opzione,valore = linea.split(" ")
-                if opzione   == "risoluzione":
-                    risoluzione = valore
-                elif opzione == "auto-bilanciamento-bianco-guadagno":
-                    auto_bilanciamento_bianco_guadagno = float(valore)
-                elif opzione == "auto-bilanciamento-bianco-modalita":
-                    auto_bilanciamento_bianco_modalita = valore
-                elif opzione == "luminosita":
-                    luminosita = int(valore)
-                elif opzione == "contrasto":
-                    contrasto = int(valore)
-                elif opzione == "compensazione-esposizione":
-                    compensazione_esposizione = int(valore)
-                elif opzione == "modalita-esposizione":
-                    modalita_esposizione = valore
-                elif opzione == "flash":
-                    flash = valore
-                elif opzione == "hflip":
-                    if valore.lower() == "true":
-                        hflip = True
-                    elif valore.lower() == "false":
-                        hflip = False
-                elif opzione == "vflip":
-                    if valore.lower() == "true":
-                        vflip = True
-                    elif valore.lower() == "false":
-                        vflip = False
-                elif opzione == "effetto-immagine":
-                    effetto_immagine = valore
-                elif opzione == "iso":
-                    iso = int(valore)
-                elif opzione == "rotazione":
-                    rotazione = int(valore)
-                elif opzione == "saturazione":
-                    saturazione = int(valore)
-                elif opzione == "nitidezza":
-                    nitidezza = int(valore)
-                elif opzione == "velocita-otturatore":
-                    velocita_otturatore = int(valore)
-        ############### Scrivi le impostazioni lette dal file ##################
-        camera.awb_gains             = auto_bilanciamento_bianco_guadagno
-        camera.awb_mode              = auto_bilanciamento_bianco_modalita
-        camera.brightness            = luminosita
-        camera.contrast              = contrasto
-        camera.exposure_compensation = compensazione_esposizione
-        camera.exposure_mode         = modalita_esposizione
-        camera.flash_mode            = flash
-        camera.hflip                 = hflip
-        camera.vflip                 = vflip
-        camera.image_effect          = effetto_immagine
-        camera.iso                   = iso
-        camera.resolution            = risoluzione
-        camera.rotation              = rotazione
-        camera.saturation            = saturazione
-        camera.sharpness             = nitidezza
-        camera.shutter_speed         = velocita_otturatore
-
-        # Directory temporanea
-        if not os.path.exists("tmp"):
-            os.system("mkdir tmp")
 
         tentata_lettura = False
 
