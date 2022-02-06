@@ -1,3 +1,5 @@
+# coding = utf-8
+
 """
 Autore: Roberto Antonetti Lamorgese Passeri
 Copyright: Massimo Manco & Co. SNC 2020
