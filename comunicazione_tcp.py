@@ -205,6 +205,8 @@ class comunicazione_tcp(oggetto):
         if hasattr(self,'conn'):
             try:
                 self.conn.sendall(bytes(dati,'utf-8'))
+                logging.info(type(self).__name__ + " messaggio inviato su TCP")
+
             except:
                 raise
         else:
