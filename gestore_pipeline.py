@@ -37,10 +37,10 @@ class gestore_pipeline(oggetto):
                  lock_ipc_entrata,
                  coda_ipc_uscita,
                  lock_ipc_uscita):
-        super().__init__(coda_ipc_entrata,
+        [super().__init__(coda_ipc_entrata,
                          lock_ipc_entrata,
                          coda_ipc_uscita,
-                         lock_ipc_uscita)
+                         lock_ipc_uscita)]
         logging.info(type(self).__name__ + " inizializzazione")
         ##### Inizializzazione comune a tutti gli oggetti del framework ########
         ##################### Lettura delle impostazioni #######################

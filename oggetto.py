@@ -30,7 +30,7 @@ class oggetto(Process):
                  coda_ipc_uscita,
                  lock_ipc_uscita):
         #################### Inizializzazione oggetto ##########################
-        super().__init__()
+        [super().__init__()]
         logging.info("oggetto inizializzazione")
         self.impostazioni_in_aggiornamento = 0
         self.stato                         = "idle"
