@@ -1,0 +1,4 @@
+https://docs.python.org/3/library/http.client.html#examples
+
+https://docs.python-requests.org/en/master/
+

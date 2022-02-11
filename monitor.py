@@ -22,10 +22,10 @@ class monitor(oggetto):
                  lock_ipc_entrata,
                  coda_ipc_uscita,
                  lock_ipc_uscita):
-        [super().__init__(coda_ipc_entrata,
+        super().__init__(coda_ipc_entrata,
                          lock_ipc_entrata,
                          coda_ipc_uscita,
-                         lock_ipc_uscita)]
+                         lock_ipc_uscita)
         logging.info(type(self).__name__ + " inizializzazione " + str(strftime("%H:%M:%S")))
         ##################### Lettura delle impostazioni #######################
         self.file_configurazione = file_configurazione

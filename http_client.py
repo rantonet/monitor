@@ -1,6 +1,6 @@
 # This Python file uses the following encoding: utf-8
 
-import socket
+import http.client
 import logging
 
 from time            import sleep,time
@@ -19,10 +19,8 @@ class comunicazione_tcp(oggetto):
                          lock_ipc_entrata,
                          coda_ipc_uscita,
                          lock_ipc_uscita)
-
         logging.info(type(self).__name__ + " inizializzazione")
-
-        ##################### LETTURA DELLE IMPOSTAZIONI #######################
+        ##################### Lettura delle impostazioni #######################
         self.file_configurazione = file_configurazione
         configurazione       = []
         lista_configurazione = []
@@ -41,57 +39,35 @@ class comunicazione_tcp(oggetto):
         for impostazione in lista_configurazione:
             nome,valore = impostazione.split(" ")
             impostazioni.append([nome,valore])
-        ################# FINE LETTURA IMPOSTAZIONI ######################
-
+        ################# Fine lettura delle impostazioni ######################
         for impostazione in impostazioni:
             nome,valore = impostazione
             if nome == "server":
                 self.server = valore
-                print("Server : ",self.server)
-            elif nome == "client_address":
-                self.client = valore
-                print("Client Address : ",self.client)
-            elif nome == "server_address":
+                #print(impostazione)
+                print("Server : ",self.server)                
+            elif nome == "indirizzo":
                 self.indirizzo_server = valore
-                print("Server Address: ",self.server_address)
-            elif nome == "port":
+                #print(impostazione)
+                print("Indirizzo Server: ",self.indirizzo_server)
+            elif nome == "porta":
                 self.porta = int(valore)
-                print("Port : ",self.port)
-
-        ###################### INIZIALIZZA IL SOCKET #####################
+                #print(impostazione)
+                print("Porta : ",self.porta)
 
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        
-        #################### INIZIO ATTIVAZIONE SERVER ###################
 
         if self.server == True:
-            self.socket.bind(server_address,port)
-
-            logging.info(type(self).__name__ + " avvio server TCP" + self.socket.bind(('0.0.0.0', self.port)))
-
-            self.socket.listen()
+            logging.info(type(self).__name__ + " avvio server TCP" + self.socket.bind(('0.0.0.0', self.porta)))
+            self.socket.listen(1)
             logging.info(type(self).__name__ + " server TCP avviato")
-
-        #################### FINE ATTIVAZIONE SERVER ###################
-
         else:
+            logging.info(type(self).__name__ + " connettendo a " + str(self.indirizzo_server) + ":" + str(self.porta))
 
-        ################### INIZIO ATTIVAZIONE CLIENT ##################
-
-            self.socket.connect((self.server_address,self.port))
-
-            logging.info(type(self).__name__ + " connettendo a " + str(self.server_address) + ":" + str(self.port))
-
-            logging.info(type(self).__name__ + " connesso a " + str(self.server_address) + ":" + str(self.port))
-
-        ################### INIZIO ATTIVAZIONE CLIENT ##################
-
-        logging.info(type(self).__name__ + " Comunicazione TCP inizializzata")
-
-        ######################## FINE INIZIALIZZAZIONE #########################
-
-
-    ############################ AVVIA PROCESSO ############################
+            self.socket.connect((self.indirizzo_server,self.porta))
+            logging.info(type(self).__name__ + " connesso a " + str(self.indirizzo_server) + ":" + str(self.porta))
+        ######################## Fine inizializzazione #########################
+        logging.info(type(self).__name__ + " inizializzato")
     def avvia(self):
         pacchetto_segnale_entrata = []
         segnale                   = ""
@@ -101,24 +77,17 @@ class comunicazione_tcp(oggetto):
 
         errore_connessione        = False
 
-
-
         if self.server == True:
-
-        ###################### INIZIO PARTE SERVER #########################
+            logging.info(type(self).__name__ + " inizio ascolto porta TCP")
             while True:
                 try:
-                    self.conn, self.client_address = self.socket.accept()
-
-                    logging.info(type(self).__name__ + " inizio ascolto porta TCP")
-
+                    self.conn, self.indirizzo_client = self.socket.accept()
                 except:
                     errore_connessione = True
                 if not errore_connessione:
                     break
                 sleep(ATTESA_CICLO_PRINCIPALE)
-
-            logging.info(type(self).__name__ + " ascoltando sulla porta " + str(self.port) + " dall'indirizzo " + str(self.client_address))
+            logging.info(type(self).__name__ + " ascoltando sulla porta " + str(self.porta) + " all'indirizzo " + str(self.indirizzo_client))
 
             while True:
                 pacchetto_segnale_entrata[:] = []
@@ -171,11 +140,7 @@ class comunicazione_tcp(oggetto):
                     except:
                         pass
                 sleep(ATTESA_CICLO_PRINCIPALE)
-        ###################### FINE PARTE SERVER #########################
-        
         else:
-
-        ##################### INIZIO PARTE CLIENT ########################
             dati = ""
             with open("codici_casse","a") as codici:
                 pass
@@ -236,11 +201,8 @@ class comunicazione_tcp(oggetto):
                         except:
                             pass
                 sleep(ATTESA_CICLO_PRINCIPALE)
-        ###################### FINE PARTE CLIENT #########################
-        
     def aggiornamento(self):
         pass
-
     def invia_dati(self,dati):
         if hasattr(self,'conn'):
             try:

@@ -53,7 +53,7 @@ class gestore_segnali(Process):
         Inizializza le code per la comunicazione
         """
 
-        [super().__init__()]
+        super().__init__()
         #logging.info(type(self).__name__ + " inizializzazione")
         ################## Inizializzazione Gestore Segnali ####################
         # Coda per la comunicazione in entrata con i processi esterni
