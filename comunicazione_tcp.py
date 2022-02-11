@@ -48,9 +48,6 @@ class comunicazione_tcp(oggetto):
             if nome == "server":
                 self.server = valore
                 print("Server : ",self.server)
-            elif nome == "client_address":
-                self.client = valore
-                print("Client Address : ",self.client)
             elif nome == "server_address":
                 self.indirizzo_server = valore
                 print("Server Address: ",self.server_address)
@@ -155,30 +152,38 @@ class comunicazione_tcp(oggetto):
                         self.coda_segnali_uscita.put_nowait(["stop", \
                                                             "gestore_segnali"])
                     return int(-1)
-                elif segnale == "cassa presente":
-                    try:
-                        self.invia_dati("cassa presente")
-                    except:
+
+
+                dati = self.socket.recv(1024).decode('utf-8')
+                if dati != "":
+                    print(dati)
+                    if dati.find("cassa presente") >= 0:
+                        try:
+                            self.invia_dati("cassa presente")
+                        except:
+                            pass
+                    elif dati.find("rilascia cassa") >= 0:
+                        try:
+                            self.invia_dati("rilascia cassa")
+                        except:
+                            pass
+                    elif dati.find("stop") >= 0:
                         pass
-                elif segnale == "rilascia cassa":
-                    try:
-                        self.invia_dati("rilascia cassa")
-                    except:
-                        pass
-                elif segnale.find("CODICE") >= 0:
-                    try:
-                        self.invia_dati(segnale)
-                    except:
-                        pass
+                    elif segnale.find("CODICE") >= 0:
+                        try:
+                            self.invia_dati(segnale)
+                        except:
+                            pass
                 sleep(ATTESA_CICLO_PRINCIPALE)
+
         ###################### FINE PARTE SERVER #########################
         
         else:
 
         ##################### INIZIO PARTE CLIENT ########################
             dati = ""
-            with open("codici_casse","a") as codici:
-                pass
+            #with open("codici_casse","a") as codici:
+            #   pass
             while True:
                 pacchetto_segnale_entrata[:] = []
                 segnale                      = ""
@@ -215,27 +220,24 @@ class comunicazione_tcp(oggetto):
                                                             "gestore_segnali"])
                     return int(-1)
 
-                dati = self.socket.recv(1024).decode('utf-8')
-                if dati != "":
-                    print(dati)
-                    if dati.find("cassa presente") >= 0:
-                        try:
-                            self.invia_dati("cassa presente")
-                        except:
-                            pass
-                    elif dati.find("rilascia cassa") >= 0:
-                        try:
-                            self.invia_dati("rilascia cassa")
-                        except:
-                            pass
-                    elif dati.find("stop") >= 0:
+
+                elif segnale == "cassa presente":
+                    try:
+                        self.invia_dati("cassa presente")
+                    except:
                         pass
-                    elif segnale.find("CODICE") >= 0:
-                        try:
-                            self.invia_dati(segnale)
-                        except:
-                            pass
+                elif segnale == "rilascia cassa":
+                    try:
+                        self.invia_dati("rilascia cassa")
+                    except:
+                        pass
+                elif segnale.find("CODICE") >= 0:
+                    try:
+                        self.invia_dati(segnale)
+                    except:
+                        pass
                 sleep(ATTESA_CICLO_PRINCIPALE)
+
         ###################### FINE PARTE CLIENT #########################
         
     def aggiornamento(self):
