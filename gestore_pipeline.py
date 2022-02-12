@@ -261,12 +261,6 @@ class gestore_pipeline(oggetto):
                                                            str(time()) + ":" + \
                                                            type(self).__name__ \
                                                            + ":" + nome)
-        sleep(0.1)
-        with self.lock_ipc_uscita_operazioni["stato_shotstation"]:
-            self.ipc_uscita_operazioni["stato_shotstation"].put_nowait("pronto:"  + \
-                                                       str(time()) + ":" + \
-                                                       type(self).__name__ \
-                                                       + ":stato_shotstation")
 
         while True:
             pacchetto_segnale_entrata[:] = []

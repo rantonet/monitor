@@ -49,7 +49,7 @@ class monitor(oggetto):
             impostazioni.append([nome,valore])
             #print(impostazione)
         ################# Fine lettura delle impostazioni ######################
-        logging.info(type(self).__name__ + " inizializzato " + str(strftime("%H:%M:%S")))
+        logging.info(type(self).__name__ + " Fine lettura impostazioni " + str(strftime("%H:%M:%S")))
 
     def avvia(self):
         logging.info(type(self).__name__ + " avviato " + str(strftime("%H:%M:%S")))
