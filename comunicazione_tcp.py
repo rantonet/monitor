@@ -156,24 +156,11 @@ class comunicazione_tcp(oggetto):
 
                 dati = self.socket.recv(1024).decode('utf-8')
                 if dati != "":
-                    print(dati)
-                    if dati.find("cassa presente") >= 0:
-                        try:
-                            self.invia_dati("cassa presente")
-                        except:
-                            pass
-                    elif dati.find("rilascia cassa") >= 0:
-                        try:
-                            self.invia_dati("rilascia cassa")
-                        except:
-                            pass
-                    elif dati.find("stop") >= 0:
-                        pass
-                    elif segnale.find("CODICE") >= 0:
-                        try:
-                            self.invia_dati(segnale)
-                        except:
-                            pass
+                    if dati.find("CIAO") >= 0:
+                        print("CIAO")
+                    elif dati.find("SONO IL MODULO MONITOR") >= 0:
+                        PRINT("SONO IL MODULO MONITOR")
+
                 sleep(ATTESA_CICLO_PRINCIPALE)
 
         ###################### FINE PARTE SERVER #########################
@@ -221,14 +208,14 @@ class comunicazione_tcp(oggetto):
                     return int(-1)
 
 
-                elif segnale == "cassa presente":
+                elif segnale == "CIAO":
                     try:
-                        self.invia_dati("cassa presente")
+                        self.invia_dati("CIAO")
                     except:
                         pass
-                elif segnale == "rilascia cassa":
+                elif segnale == "SONO IL MODULO MONITOR":
                     try:
-                        self.invia_dati("rilascia cassa")
+                        self.invia_dati("SONO IL MODULO MONITOR")
                     except:
                         pass
                 elif segnale.find("CODICE") >= 0:

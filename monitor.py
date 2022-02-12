@@ -88,6 +88,7 @@ class monitor(oggetto):
                 if not self.coda_segnali_entrata.empty():
                     pacchetto_segnale[:] = self.coda_segnali_entrata.get_nowait()
             ####################### Fine Lettura Segnale #######################
+
             ################# Controllo consistenza del segnale ################
             if len(pacchetto_segnale) == 4:
                 # La lista con quatto elementi significa che è un messaggio
@@ -112,10 +113,11 @@ class monitor(oggetto):
                 continue
             
             with self.lock_segnali_uscita:
-                    self.coda_segnali_uscita.put_nowait(["cassa presente",
+                    self.coda_segnali_uscita.put_nowait(["CIAO",
                                                          "comunicazione_tcp"])
             pacchetto_segnale[:] = []
+
             with self.lock_segnali_uscita:
-                    self.coda_segnali_uscita.put_nowait(["rilascia cassa",
+                    self.coda_segnali_uscita.put_nowait(["SONO IL MODULO MONITOR",
                                                          "comunicazione_tcp"])
             pacchetto_segnale[:] = []
