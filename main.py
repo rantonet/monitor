@@ -22,7 +22,7 @@ if __name__ == '__main__':
     ipc_uscita                  = Queue()
     lock_ipc_uscita             = Lock()
     file_configurazione         = "pipeline.conf"
-    file_log                    = "shotstation.log"
+    file_log                    = "monitor.log"
 
     segnale_entrata             = ""
     segnale_uscita              = ""

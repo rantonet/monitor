@@ -45,14 +45,14 @@ class comunicazione_tcp(oggetto):
 
         for impostazione in impostazioni:
             nome,valore = impostazione
-            if nome == "server":
-                self.server = valore
-                print("Server : ",self.server)
+            if nome == "station":
+                self.station = valore
+                print("Server : ",self.station)
             elif nome == "server_address":
-                self.indirizzo_server = valore
+                self.server_address = valore
                 print("Server Address: ",self.server_address)
             elif nome == "port":
-                self.porta = int(valore)
+                self.port = int(valore)
                 print("Port : ",self.port)
 
         ###################### INIZIALIZZA IL SOCKET #####################
@@ -61,10 +61,10 @@ class comunicazione_tcp(oggetto):
         
         #################### INIZIO ATTIVAZIONE SERVER ###################
 
-        if self.server == True:
-            self.socket.bind(server_address,port)
+        if self.station == "server":
+            self.socket.bind((self.server_address,self.port))
 
-            logging.info(type(self).__name__ + " avvio server TCP" + self.socket.bind(('0.0.0.0', self.port)))
+            logging.info(type(self).__name__ + " avvio server TCP" )
 
             self.socket.listen()
             logging.info(type(self).__name__ + " server TCP avviato")
@@ -100,7 +100,7 @@ class comunicazione_tcp(oggetto):
 
 
 
-        if self.server == True:
+        if self.station == "server":
 
         ###################### INIZIO PARTE SERVER #########################
             while True:

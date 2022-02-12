@@ -206,10 +206,10 @@ class gestore_pipeline(oggetto):
                 pass
             else:
                 with self.lock_segnali_uscita:
-                    self.coda_segnali_uscita.put_nowait(["segnale mal formato",
+                    self.coda_segnali_uscita.put_nowait([" segnale mal formato",
                                                          ""])
                 sleep(ATTESA_CICLO_PRINCIPALE)
-                logging.info("Gestore Pipeline: Segnale mal formato")
+                logging.info(type(self).__name__ + " Segnale mal formato")
                 pacchetto_segnale_entrata[:] = []
                 continue
             pacchetto_segnale_entrata[:] = []
@@ -313,7 +313,7 @@ class gestore_pipeline(oggetto):
                 with self.lock_segnali_uscita:
                     self.coda_segnali_uscita.put_nowait(["segnale mal formato",
                                                          ""])
-                logging.info("Gestore Pipeline: Segnale mal formato")
+                logging.info(type(self).__name__ + " Segnale mal formato")
                 pacchetto_segnale_entrata[:] = []
                 sleep(ATTESA_CICLO_PRINCIPALE)
                 continue
@@ -380,7 +380,7 @@ class gestore_pipeline(oggetto):
                     with lock_uscita:
                         coda_segnali_uscita.put_nowait(["segnale mal formato",
                                                         ""])
-                    logging.info("Gestore Pipeline: Segnale mal formato")
+                    logging.info(type(self).__name__ + " Segnale mal formato")
                     pacchetto_segnale_entrata[:] = []
                     sleep(ATTESA_CICLO_PRINCIPALE)
                     continue
