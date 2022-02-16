@@ -18,8 +18,7 @@ from gestore_segnali import gestore_segnali
 
 # Operazioni
 ## Mettere qui le operazioni della pipeline
-from monitor                import monitor
-from comunicazione_tcp      import comunicazione_tcp
+from template_process_pipeline                import template_process_pipeline
 
 ATTESA_CICLO_PRINCIPALE = 0.001
 

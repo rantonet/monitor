@@ -6,50 +6,51 @@ License. To view a copy of this license, visit
 http://creativecommons.org/licenses/by/4.0/ or send a letter to Creative
 Commons, PO Box 1866, Mountain View, CA 94042, USA.
 """
+if __name__ == '__main__':
 
-from multiprocessing  import Lock,Queue
-from time             import time,sleep
-import logging
-import os
+    from multiprocessing  import Lock,Queue
+    from time             import time,sleep
+    import logging
+    import os
 
-from gestore_pipeline import gestore_pipeline
+    from gestore_pipeline import gestore_pipeline
 
+    ipc_entrata                 = Queue()
+    lock_ipc_entrata            = Lock()
+    ipc_uscita                  = Queue()
+    lock_ipc_uscita             = Lock()
+    file_configurazione         = "pipeline.conf"
+    file_log                    = "pipeline.log"
 
+    segnale_entrata             = ""
+    segnale_uscita              = ""
+    segnale_uscita_spacchettato = []
 
-ipc_entrata                 = Queue()
-lock_ipc_entrata            = Lock()
-ipc_uscita                  = Queue()
-lock_ipc_uscita             = Lock()
-file_configurazione         = "pipeline.conf"
-file_log                    = "monitor.log"
+    #if os.path.exists(file_log):
+    #      os.remove(file_log)
 
-segnale_entrata             = ""
-segnale_uscita              = ""
-segnale_uscita_spacchettato = []
+    logging.basicConfig(filename=file_log,level=logging.INFO)
+    #logging.basicConfig(level=logging.DEBUG)
 
-#if os.path.exists(file_log):
-#      os.remove(file_log)
+    ######################## Codice Personale qui ##################################
 
-logging.basicConfig(filename=file_log,level=logging.INFO)
-#logging.basicConfig(level=logging.DEBUG)
-######################## Codice Personale qui ##################################
-p = gestore_pipeline(file_configurazione,
-                    ipc_uscita,
-                    lock_ipc_uscita,
-                    ipc_entrata,
-                    lock_ipc_entrata)
-p.start()
+    p = gestore_pipeline(file_configurazione,
+                        ipc_uscita,
+                        lock_ipc_uscita,
+                        ipc_entrata,
+                        lock_ipc_entrata)
+    p.start()
 
-sleep(0.001)
-with lock_ipc_uscita:
-    ipc_uscita.put_nowait("avvia:" + str(time()) + ":" + str(__name__) + ":gestore_pipeline")
-sleep(0.001)
-#
-# while True:
-#     comando      = input("Comando: ")
-#     destinatario = input("Destinatario: ")
-#
-#     with lock_ipc_uscita:
-#         ipc_uscita.put_nowait(comando + ":" + str(time()) + ":" + str(__name__) + ":" + destinatario)
+    sleep(0.001)
+    with lock_ipc_uscita:
+        ipc_uscita.put_nowait("avvia:" + str(time()) + ":" + str(__name__) + ":gestore_pipeline")
+    sleep(0.001)
+    #
+    # while True:
+    #     comando      = input("Comando: ")
+    #     destinatario = input("Destinatario: ")
+    #
+    #     with lock_ipc_uscita:
+    #         ipc_uscita.put_nowait(comando + ":" + str(time()) + ":" + str(__name__) + ":" + destinatario)
 
-p.join()
+    p.join()

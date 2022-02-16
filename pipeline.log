@@ -1,0 +1,76 @@
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:template_process_pipeline: avviando gestore segnali
+INFO:root:template_process_pipeline inizializzato
+INFO:root:template_process_pipeline inizializzazione 17:06:39
+INFO:root:template_process_pipeline Fine lettura impostazioni 17:06:39
+INFO:root:<template_process_pipeline name='template_process_pipeline-4' parent=29504 initial>
+INFO:root:gestore_pipeline sta avviando template_process_pipeline <template_process_pipeline name='template_process_pipeline-4' parent=29504 initial>
+INFO:root:oggetto inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:template_process_pipeline: avviando gestore segnali
+INFO:root:template_process_pipeline inizializzato
+INFO:root:template_process_pipeline inizializzazione 17:34:31
+INFO:root:template_process_pipeline Fine lettura impostazioni 17:34:31
+INFO:root:<template_process_pipeline name='template_process_pipeline-4' parent=31920 initial>
+INFO:root:gestore_pipeline sta avviando template_process_pipeline <template_process_pipeline name='template_process_pipeline-4' parent=31920 initial>
+INFO:root:oggetto inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:template_process_pipeline: avviando gestore segnali
+INFO:root:template_process_pipeline inizializzato
+INFO:root:template_process_pipeline inizializzazione 17:45:28
+INFO:root:template_process_pipeline Fine lettura impostazioni 17:45:28
+INFO:root:<template_process_pipeline name='template_process_pipeline-4' parent=32272 initial>
+INFO:root:gestore_pipeline sta avviando template_process_pipeline <template_process_pipeline name='template_process_pipeline-4' parent=32272 initial>
+INFO:root:['idle', 'gestore_segnali', '', '1645029930.1052344']
+INFO:root:['idle', 'gestore_segnali', '', '1645029930.1872356']
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:template_process_pipeline: avviando gestore segnali
+INFO:root:template_process_pipeline inizializzato
+INFO:root:template_process_pipeline inizializzazione 17:47:27
+INFO:root:template_process_pipeline Fine lettura impostazioni 17:47:27
+INFO:root:<template_process_pipeline name='template_process_pipeline-4' parent=7388 initial>
+INFO:root:gestore_pipeline sta avviando template_process_pipeline <template_process_pipeline name='template_process_pipeline-4' parent=7388 initial>
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:template_process_pipeline: avviando gestore segnali
+INFO:root:template_process_pipeline inizializzato
+INFO:root:template_process_pipeline inizializzazione 17:51:37
+INFO:root:template_process_pipeline Fine lettura impostazioni 17:51:37
+INFO:root:<template_process_pipeline name='template_process_pipeline-4' parent=34204 initial>
+INFO:root:gestore_pipeline sta avviando template_process_pipeline <template_process_pipeline name='template_process_pipeline-4' parent=34204 initial>
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:template_process_pipeline: avviando gestore segnali
+INFO:root:template_process_pipeline inizializzato
+INFO:root:template_process_pipeline inizializzazione 17:52:04
+INFO:root:template_process_pipeline Fine lettura impostazioni 17:52:04
+INFO:root:<template_process_pipeline name='template_process_pipeline-4' parent=4912 initial>
+INFO:root:gestore_pipeline sta avviando template_process_pipeline <template_process_pipeline name='template_process_pipeline-4' parent=4912 initial>
