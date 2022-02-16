@@ -150,7 +150,8 @@ class gestore_pipeline(oggetto):
                 sleep(0.1)
         # Avvia tutte le operazioni
         for nome,operazione in self.operazioni.items():
-            logging.info(type(self).__name__ + " sta avviando " + nome)
+            print(type(operazione))
+            logging.info(type(self).__name__ + " sta avviando " + nome + " " + str(operazione))
             operazione.start()
         ################ Fine inizializza le impostazioni ######################
         logging.info(type(self).__name__ + " inizializzato")

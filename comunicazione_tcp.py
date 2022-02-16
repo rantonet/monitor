@@ -3,7 +3,7 @@
 import socket
 import logging
 
-from time            import sleep,time
+from time            import sleep,localtime,strftime
 from oggetto         import oggetto
 
 ATTESA_CICLO_PRINCIPALE = 0.01
@@ -20,7 +20,7 @@ class comunicazione_tcp(oggetto):
                          coda_ipc_uscita,
                          lock_ipc_uscita)
 
-        logging.info(type(self).__name__ + " inizializzazione")
+        logging.info(type(self).__name__ + " inizializzazione " + str(strftime("%H:%M:%S")))
 
         ##################### LETTURA DELLE IMPOSTAZIONI #######################
         self.file_configurazione = file_configurazione
@@ -43,6 +43,8 @@ class comunicazione_tcp(oggetto):
             impostazioni.append([nome,valore])
         ################# FINE LETTURA IMPOSTAZIONI ######################
 
+        logging.info(type(self).__name__ + " Fine lettura impostazioni " + str(strftime("%H:%M:%S")))
+
         for impostazione in impostazioni:
             nome,valore = impostazione
             if nome == "station":
@@ -54,6 +56,16 @@ class comunicazione_tcp(oggetto):
             elif nome == "port":
                 self.port = int(valore)
                 print("Port : ",self.port)
+
+    ############################ AVVIA PROCESSO ############################
+    def avvia(self):
+        pacchetto_segnale_entrata = []
+        segnale                   = ""
+        mittente                  = ""
+        destinatario              = ""
+        timestamp                 = 0
+
+        errore_connessione        = False
 
         ###################### INIZIALIZZA IL SOCKET #####################
 
@@ -86,19 +98,6 @@ class comunicazione_tcp(oggetto):
         logging.info(type(self).__name__ + " Comunicazione TCP inizializzata")
 
         ######################## FINE INIZIALIZZAZIONE #########################
-
-
-    ############################ AVVIA PROCESSO ############################
-    def avvia(self):
-        pacchetto_segnale_entrata = []
-        segnale                   = ""
-        mittente                  = ""
-        destinatario              = ""
-        timestamp                 = 0
-
-        errore_connessione        = False
-
-
 
         if self.station == "server":
 

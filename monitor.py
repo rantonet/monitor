@@ -1,10 +1,3 @@
-# This Python file uses the following encoding: utf-8
-
-"""
-Autore: Roberto Antonetti Lamorgese Passeri
-Copyright: Massimo Manco & Co. SNC 2020
-"""
-
 import os
 import sys
 import fileinput
