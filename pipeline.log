@@ -1,0 +1,17 @@
+INFO:root:oggetto inizializzazione
+INFO:root:gestore_pipeline: avviando gestore segnali
+INFO:root:gestore_pipeline inizializzato
+INFO:root:gestore_pipeline inizializzazione
+INFO:root:oggetto inizializzazione
+INFO:root:monitor: avviando gestore segnali
+INFO:root:monitor inizializzato
+INFO:root:monitor inizializzazione 13:19:50
+INFO:root:monitor Fine lettura impostazioni 13:19:50
+INFO:root:<monitor name='monitor-4' parent=30860 initial>
+INFO:root:oggetto inizializzazione
+INFO:root:comunicazione_tcp: avviando gestore segnali
+INFO:root:comunicazione_tcp inizializzato
+INFO:root:comunicazione_tcp inizializzazione 13:19:51
+INFO:root:comunicazione_tcp Fine lettura impostazioni 13:19:51
+INFO:root:<comunicazione_tcp name='comunicazione_tcp-7' parent=30860 initial>
+INFO:root:gestore_pipeline sta avviando monitor <monitor name='monitor-4' parent=30860 initial>

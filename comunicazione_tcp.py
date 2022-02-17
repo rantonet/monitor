@@ -1,5 +1,32 @@
 # This Python file uses the following encoding: utf-8
 
+# Programma server Echo 
+# import socket
+
+# HOST = ''                 # Nome simbolico che rappresenta il nodo locale
+# PORT = 50007              # Porta non privilegiata arbitraria 
+# s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# s.bind((HOST, PORT))
+# s.listen(1)
+# conn, addr = s.accept()
+# print 'Connected by', addr
+# while 1:
+#     data = conn.recv(1024)
+#     if not data: break
+#     conn.send(data)
+# conn.close()
+# Programma client Echo
+# import socket
+
+# HOST = 'daring.cwi.nl'    # Il nodo remoto
+# PORT = 50007              # The La stessa porta usata dal server
+# s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# s.connect((HOST, PORT))
+# s.send('Hello, world')
+# data = s.recv(1024)
+# s.close()
+# print 'Received', `data`
+
 import socket
 import logging
 
@@ -78,35 +105,27 @@ class comunicazione_tcp(oggetto):
 
             logging.info(type(self).__name__ + " avvio server TCP" )
 
-            self.socket.listen()
+            self.socket.listen(1) # 5 è il numero (massimo) di connessioni prima di non accettarne altre
             logging.info(type(self).__name__ + " server TCP avviato")
 
         #################### FINE ATTIVAZIONE SERVER ###################
 
-        else:
-
-        ################### INIZIO ATTIVAZIONE CLIENT ##################
-
-            self.socket.connect((self.server_address,self.port))
-
-            logging.info(type(self).__name__ + " connettendo a " + str(self.server_address) + ":" + str(self.port))
-
-            logging.info(type(self).__name__ + " connesso a " + str(self.server_address) + ":" + str(self.port))
-
-        ################### INIZIO ATTIVAZIONE CLIENT ##################
-
-        logging.info(type(self).__name__ + " Comunicazione TCP inizializzata")
-
-        ######################## FINE INIZIALIZZAZIONE #########################
-
-        if self.station == "server":
-
         ###################### INIZIO PARTE SERVER #########################
+        # The important thing to understand now is this: this is all a “server”
+        # socket does. It doesn’t send any data. It doesn’t receive any data.
+        # It just produces “client” sockets. 
+        # Each clientsocket is created in response to some other “client” socket
+        # doing a connect() to the host and port we’re bound to. 
+        # As soon as we’ve created that clientsocket, we go back to listening 
+        # for more connections. 
+        # The two “clients” are free to chat it up - they are using some dynamically
+        # allocated port which will be recycled when the conversation ends.
             while True:
+                # accetta connessioni dall'esterno
                 try:
-                    self.conn, self.server_address = self.socket.accept()
+                    self.conn, self.client_address = self.socket.accept()
 
-                    logging.info(type(self).__name__ + " inizio ascolto porta TCP")
+                    logging.info(type(self).__name__ + " Connesso da " + self.client_address)
 
                 except:
                     errore_connessione = True
@@ -146,25 +165,39 @@ class comunicazione_tcp(oggetto):
                     continue
 
                 if segnale == "stop":
-                    conn.close()
+                    clientsocket.close()
                     with self.lock_segnali_uscita:
                         self.coda_segnali_uscita.put_nowait(["stop", \
                                                             "gestore_segnali"])
                     return int(-1)
 
 
-                dati = self.socket.recv(1024).decode('utf-8')
+                dati = self.conn.recv(1024).decode('utf-8')
                 if dati != "":
                     if dati.find("CIAO DA MODULO MONITOR") >= 0:
-                        print("CIAO DA MODULO MONITOR")
-
+                        self.conn.send(dati)
+                self.conn.close()
                 sleep(ATTESA_CICLO_PRINCIPALE)
 
-        ###################### FINE PARTE SERVER #########################
+        ###################### FINE PARTE SERVER #######################
         
         else:
 
-        ##################### INIZIO PARTE CLIENT ########################
+        ################### INIZIO ATTIVAZIONE CLIENT ##################
+
+            self.socket.connect((self.server_address,self.port))
+
+            logging.info(type(self).__name__ + " connettendo a " + str(self.server_address) + ":" + str(self.port))
+
+            logging.info(type(self).__name__ + " connesso a " + str(self.server_address) + ":" + str(self.port))
+
+            ################### INIZIO ATTIVAZIONE CLIENT ##################
+
+            logging.info(type(self).__name__ + " Comunicazione TCP inizializzata")
+
+            ##################### FINE INIZIALIZZAZIONE ####################
+
+            ##################### INIZIO PARTE CLIENT ######################
             dati = ""
 
             while True:
@@ -190,7 +223,7 @@ class comunicazione_tcp(oggetto):
                 else:
                     with self.lock_segnali_uscita:
                         self.coda_segnali_uscita.put_nowait(
-                                             conn           ["segnale mal formato",
+                                             clientsocket           ["segnale mal formato",
                                                          ""])
                     pacchetto_segnale_entrata[:]
                     sleep(ATTESA_CICLO_PRINCIPALE)
@@ -218,9 +251,11 @@ class comunicazione_tcp(oggetto):
         pass
 
     def invia_dati(self,dati):
-        if hasattr(self,'conn'):
+        if hasattr(self,'clientsocket'):
             try:
-                self.conn.sendall(bytes(dati,'utf-8'))
+                self.socket.send(bytes(dati,'utf-8'))
+                dati = self.socket.recv(1024)
+                self.socket.close()
                 logging.info(type(self).__name__ + " messaggio inviato su TCP")
 
             except:
