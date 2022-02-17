@@ -104,7 +104,7 @@ class comunicazione_tcp(oggetto):
         ###################### INIZIO PARTE SERVER #########################
             while True:
                 try:
-                    self.conn, self.client_address = self.socket.accept()
+                    self.conn, self.server_address = self.socket.accept()
 
                     logging.info(type(self).__name__ + " inizio ascolto porta TCP")
 
@@ -114,7 +114,7 @@ class comunicazione_tcp(oggetto):
                     break
                 sleep(ATTESA_CICLO_PRINCIPALE)
 
-            logging.info(type(self).__name__ + " ascoltando sulla porta " + str(self.port) + " dall'indirizzo " + str(self.client_address))
+            logging.info(type(self).__name__ + " ascoltando sulla porta " + str(self.port))
 
             while True:
                 pacchetto_segnale_entrata[:] = []
@@ -190,7 +190,7 @@ class comunicazione_tcp(oggetto):
                 else:
                     with self.lock_segnali_uscita:
                         self.coda_segnali_uscita.put_nowait(
-                                                        ["segnale mal formato",
+                                             conn           ["segnale mal formato",
                                                          ""])
                     pacchetto_segnale_entrata[:]
                     sleep(ATTESA_CICLO_PRINCIPALE)

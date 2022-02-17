@@ -1,6 +1,6 @@
 {
     "remotePath": "./Documents/monitor",
-    "host": "10.244.244.186",
+    "host": "10.244.244.185",
     "username": "pi",
     "password": "raspberry",
     "port": 21,
