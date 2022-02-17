@@ -62,10 +62,8 @@ class monitor(oggetto):
 
         tentata_lettura = False
 
-        codice_cassa = ""
-
         while True:
-            print("In attesa di un segnale in entrata")
+            #print("In attesa di un segnale in entrata")
             # Ripulisci le variabili d'appoggio all'inizio di ogni iterazione
             # per evitare inconsistenza dei segnali
             pacchetto_segnale[:] = []
@@ -82,7 +80,7 @@ class monitor(oggetto):
                     pacchetto_segnale[:] = self.coda_segnali_entrata.get_nowait()
             ####################### Fine Lettura Segnale #######################
 
-            ################# Controllo consistenza del segnale ################
+            ########### Inizio Controllo consistenza del segnale ################
             if len(pacchetto_segnale) == 4:
                 # La lista con quatto elementi significa che è un messaggio
                 # diretto
@@ -104,13 +102,15 @@ class monitor(oggetto):
                 pacchetto_segnale[:] = []
                 sleep(ATTESA_CICLO_PRINCIPALE)
                 continue
-            
+            ############ Fine Controllo consistenza del segnale ###############
+
+            ################ Inizio programma vero e proprio ##################
+
+            ################ Comunica al modulo comunicazioni_tcp #############
+            ##################### di inviare un messaggio #####################
             with self.lock_segnali_uscita:
-                    self.coda_segnali_uscita.put_nowait(["CIAO",
-                                                         "comunicazione_tcp"])
+                    self.coda_segnali_uscita.put_nowait(["CIAO DA MODULO MONITOR",
+                                                        "comunicazione_tcp"])
             pacchetto_segnale[:] = []
 
-            with self.lock_segnali_uscita:
-                    self.coda_segnali_uscita.put_nowait(["SONO IL MODULO MONITOR",
-                                                         "comunicazione_tcp"])
-            pacchetto_segnale[:] = []
+            sleep(ATTESA_CICLO_PRINCIPALE)

@@ -155,10 +155,8 @@ class comunicazione_tcp(oggetto):
 
                 dati = self.socket.recv(1024).decode('utf-8')
                 if dati != "":
-                    if dati.find("CIAO") >= 0:
-                        print("CIAO")
-                    elif dati.find("SONO IL MODULO MONITOR") >= 0:
-                        PRINT("SONO IL MODULO MONITOR")
+                    if dati.find("CIAO DA MODULO MONITOR") >= 0:
+                        print("CIAO DA MODULO MONITOR")
 
                 sleep(ATTESA_CICLO_PRINCIPALE)
 
@@ -168,8 +166,7 @@ class comunicazione_tcp(oggetto):
 
         ##################### INIZIO PARTE CLIENT ########################
             dati = ""
-            #with open("codici_casse","a") as codici:
-            #   pass
+
             while True:
                 pacchetto_segnale_entrata[:] = []
                 segnale                      = ""
@@ -207,21 +204,12 @@ class comunicazione_tcp(oggetto):
                     return int(-1)
 
 
-                elif segnale == "CIAO":
+                elif segnale == "CIAO DA MODULO MONITOR":
                     try:
-                        self.invia_dati("CIAO")
+                        self.invia_dati("CIAO DA MODULO MONITOR")
                     except:
                         pass
-                elif segnale == "SONO IL MODULO MONITOR":
-                    try:
-                        self.invia_dati("SONO IL MODULO MONITOR")
-                    except:
-                        pass
-                elif segnale.find("CODICE") >= 0:
-                    try:
-                        self.invia_dati(segnale)
-                    except:
-                        pass
+
                 sleep(ATTESA_CICLO_PRINCIPALE)
 
         ###################### FINE PARTE CLIENT #########################
